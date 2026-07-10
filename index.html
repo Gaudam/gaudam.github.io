@@ -2,11 +2,336 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Games</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Games // Nexus Hub</title>
+    
+    <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9939310173056740" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap');
+
+        :root {
+            --bg-color: #030712;
+            --card-bg: rgba(17, 24, 39, 0.4);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --card-hover-border: rgba(255, 255, 255, 0.2);
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Animated Ambient Background */
+        .ambient-blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            animation: float 12s infinite alternate ease-in-out;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        .blob-1 {
+            top: -10%; left: -10%;
+            width: 60vw; height: 60vw;
+            background: rgba(56, 189, 248, 0.15); /* Cyan */
+            animation-delay: 0s;
+        }
+        .blob-2 {
+            bottom: -20%; right: -10%;
+            width: 70vw; height: 70vw;
+            background: rgba(168, 85, 247, 0.15); /* Purple */
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, 50px) scale(1.1); }
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .glass-card:hover {
+            border-color: var(--card-hover-border);
+            transform: translateY(-6px);
+            background: rgba(31, 41, 55, 0.5);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.05);
+        }
+
+        /* Icon Container */
+        .icon-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 28px;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover .icon-box.cyan {
+            background: rgba(6, 182, 212, 0.2);
+            border-color: rgba(6, 182, 212, 0.5);
+            color: #22d3ee;
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
+        }
+
+        .glass-card:hover .icon-box.purple {
+            background: rgba(168, 85, 247, 0.2);
+            border-color: rgba(168, 85, 247, 0.5);
+            color: #c084fc;
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+        }
+
+        .glass-card:hover .icon-box.emerald {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: rgba(16, 185, 129, 0.5);
+            color: #34d399;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Modern Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-color); }
+        ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4b5563; }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4px 10px;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .snippet-box {
+            background: #0f172a;
+            border: 1px solid rgba(255,255,255,0.1);
+            font-family: 'Space Grotesk', monospace;
+        }
+    </style>
 </head>
-<body>
-    <h1>Welcome to my site!</h1>
-    <p><a href="/Chess/">Click here to play Chess Evolution</a></p>
+<body class="relative flex flex-col items-center">
+
+    <!-- Ambient Background -->
+    <div class="ambient-blob blob-1"></div>
+    <div class="ambient-blob blob-2"></div>
+
+    <!-- Navigation / Top Bar -->
+    <nav class="w-full max-w-7xl mx-auto px-6 py-8 flex justify-between items-center z-10">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center backdrop-blur-md">
+                <i class="ph ph-hexagon text-2xl text-white"></i>
+            </div>
+            <span class="font-display font-bold text-xl tracking-wide">NEXUS<span class="text-white/30"> // HUB</span></span>
+        </div>
+        <div id="clock" class="text-sm font-medium text-white/50 tracking-widest font-display">
+            00:00:00
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="w-full max-w-7xl mx-auto px-6 py-12 flex-1 z-10 flex flex-col">
+        
+        <!-- Header -->
+        <header class="mb-16">
+            <h1 class="text-5xl md:text-7xl font-display font-bold tracking-tight mb-4">
+                Welcome to <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">My Site!</span>
+            </h1>
+            <p class="text-lg text-gray-400 max-w-2xl leading-relaxed">
+                Central command for your local HTML applications and games. Launch, organize, and manage your isolated environments from one interface.
+            </p>
+        </header>
+
+        <!-- Project Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+            
+            <!-- Project 1: Solo Leveling -->
+            <a href="SoloLeveling2.html" class="glass-card p-8 group">
+                <div class="flex justify-between items-start mb-16 relative z-10">
+                    <div class="icon-box cyan text-slate-300">
+                        <i class="ph ph-sword"></i>
+                    </div>
+                    <i class="ph ph-arrow-up-right text-2xl text-white/20 group-hover:text-white transition-colors duration-300"></i>
+                </div>
+                <div class="relative z-10 mt-auto">
+                    <div class="flex gap-2 mb-4">
+                        <span class="tag">Gamification</span>
+                        <span class="tag">Tracker</span>
+                    </div>
+                    <h2 class="text-2xl font-display font-bold mb-2">Solo Leveling Interface</h2>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        Interactive personal progression system with daily quests, stat allocation, and habit tracking.
+                    </p>
+                </div>
+            </a>
+
+            <!-- Project 2: Mastery Tracker -->
+            <a href="Masterytracker.html" class="glass-card p-8 group">
+                <div class="flex justify-between items-start mb-16 relative z-10">
+                    <div class="icon-box purple text-slate-300">
+                        <i class="ph ph-trophy"></i>
+                    </div>
+                    <i class="ph ph-arrow-up-right text-2xl text-white/20 group-hover:text-white transition-colors duration-300"></i>
+                </div>
+                <div class="relative z-10 mt-auto">
+                    <div class="flex gap-2 mb-4">
+                        <span class="tag">League API</span>
+                        <span class="tag">Gaming</span>
+                    </div>
+                    <h2 class="text-2xl font-display font-bold mb-2">Mastery Tracker</h2>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        League of Legends champion mastery comparison tool with in-depth stats and VS Mode.
+                    </p>
+                </div>
+            </a>
+
+            <!-- Project 3: Chess Evolution -->
+            <a href="/Chess/" class="glass-card p-8 group">
+                <div class="flex justify-between items-start mb-16 relative z-10">
+                    <div class="icon-box emerald text-slate-300">
+                        <i class="ph ph-crown"></i>
+                    </div>
+                    <i class="ph ph-arrow-up-right text-2xl text-white/20 group-hover:text-white transition-colors duration-300"></i>
+                </div>
+                <div class="relative z-10 mt-auto">
+                    <div class="flex gap-2 mb-4">
+                        <span class="tag">Gaming</span>
+                        <span class="tag">Strategy</span>
+                    </div>
+                    <h2 class="text-2xl font-display font-bold mb-2">Chess Evolution</h2>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        Play the classic strategy game of chess evolution in your browser.
+                    </p>
+                </div>
+            </a>
+
+            <!-- Add New Placeholder -->
+            <div class="glass-card p-8 border-dashed border-white/20 hover:border-white/40 flex flex-col items-center justify-center text-center cursor-pointer opacity-70 hover:opacity-100" onclick="alert('To add a new project, simply place the HTML file in the same folder and add a new card to this Hub\'s code!')">
+                <div class="w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
+                    <i class="ph ph-plus text-3xl text-gray-400"></i>
+                </div>
+                <h2 class="text-xl font-display font-bold mb-2">Add Project</h2>
+                <p class="text-sm text-gray-500 max-w-[200px]">
+                    Drop a new HTML file in your directory to expand the hub.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Home Button Integration Guide -->
+        <section class="mt-auto border-t border-white/10 pt-12 pb-8">
+            <div class="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 backdrop-blur-md relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
+                    <i class="ph ph-code text-9xl"></i>
+                </div>
+                
+                <h3 class="text-xl font-display font-bold mb-2 flex items-center gap-2">
+                    <i class="ph ph-link text-cyan-400"></i>
+                    Global Navigation Integration
+                </h3>
+                <p class="text-sm text-gray-400 mb-6 max-w-3xl">
+                    Copy and paste this snippet anywhere inside the <code>&lt;body&gt;</code> tag of your individual project files (like <i>SoloLeveling2.html</i>). It adds a beautiful floating "Home" button that returns you to this hub. Make sure this hub file is named <strong>index.html</strong>.
+                </p>
+                
+                <div class="relative group">
+                    <button onclick="copySnippet()" class="absolute top-3 right-3 bg-white/10 hover:bg-white/20 text-xs px-3 py-1.5 rounded-md font-medium transition-colors flex items-center gap-1 border border-white/10">
+                        <i class="ph ph-copy"></i> <span id="copy-text">Copy</span>
+                    </button>
+                    <pre class="snippet-box p-4 md:p-6 rounded-xl overflow-x-auto text-xs md:text-sm text-gray-300 leading-relaxed shadow-inner"><code id="snippet-code">&lt;!-- Hub Navigation Button --&gt;
+&lt;a href="/" style="position: fixed; bottom: 30px; left: 30px; width: 50px; height: 50px; background: rgba(17, 24, 39, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); border-radius: 50%; color: white; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5); z-index: 99999; text-decoration: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);" onmouseover="this.style.transform='translateY(-5px)'; this.style.background='rgba(31, 41, 55, 0.8)'; this.style.borderColor='rgba(255,255,255,0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.background='rgba(17, 24, 39, 0.6)'; this.style.borderColor='rgba(255,255,255,0.1)'; "&gt;
+  &lt;svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"&gt;&lt;path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"&gt;&lt;/path&gt;&lt;polyline points="9 22 9 12 15 12 15 22"&gt;&lt;/polyline&gt;&lt;/svg&gt;
+&lt;/a&gt;</code></pre>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Update clock
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            document.getElementById('clock').textContent = timeString;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Copy snippet functionality
+        function copySnippet() {
+            const codeText = document.getElementById('snippet-code').innerText;
+            
+            // Create a temporary textarea to use document.execCommand('copy') 
+            // This is a fallback to bypass the iFrame clipboard write permission issues
+            const textArea = document.createElement("textarea");
+            textArea.value = codeText;
+            
+            // Prevent scrolling to the bottom of the page when focusing
+            textArea.style.position = "fixed";
+            textArea.style.left = "-999999px";
+            textArea.style.top = "-999999px";
+            document.body.appendChild(textArea);
+            
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                const copyBtnText = document.getElementById('copy-text');
+                copyBtnText.innerText = 'Copied!';
+                setTimeout(() => {
+                    copyBtnText.innerText = 'Copy';
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+                alert("Failed to copy automatically. Please select the text and copy it manually.");
+            }
+            
+            document.body.removeChild(textArea);
+        }
+    </script>
 </body>
 </html>
