@@ -128,7 +128,12 @@
             color: #34d399;
             box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
         }
-
+        .glass-card:hover .icon-box.yellow {
+            background: rgba(185, 174, 16, 0.2);
+            border-color: rgba(174, 185, 16, 0.5);
+            color: #c3d334;
+            box-shadow: 0 0 20px rgba(174, 185, 16, 0.4);
+        }
         /* Modern Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-color); }
@@ -213,7 +218,7 @@
             <a href="/CardCreator/" class="glass-card p-8 group">
                 <div class="flex justify-between items-start mb-16 relative z-10">
                     <div class="icon-box purple text-slate-300">
-                        <i class="ph ph-trophy"></i>
+                        <i class="ph ph-identification-badge"></i>
                     </div>
                     <i class="ph ph-arrow-up-right text-2xl text-white/20 group-hover:text-white transition-colors duration-300"></i>
                 </div>
@@ -224,7 +229,7 @@
                     </div>
                     <h2 class="text-2xl font-display font-bold mb-2">Card Creator</h2>
                     <p class="text-sm text-gray-400 leading-relaxed">
-                       Random Card Creator
+                       Create a custom card.
                     </p>
                 </div>
             </a>
@@ -249,6 +254,25 @@
                 </div>
             </a>
 
+            <!-- Project 4: Chess Evolution -->
+            <a href="/Characters/" class="glass-card p-8 group">
+                <div class="flex justify-between items-start mb-16 relative z-10">
+                    <div class="icon-box yellow text-slate-300">
+                        <i class="ph ph-address-book"></i>
+                    </div>
+                    <i class="ph ph-arrow-up-right text-2xl text-white/20 group-hover:text-white transition-colors duration-300"></i>
+                </div>
+                <div class="relative z-10 mt-auto">
+                    <div class="flex gap-2 mb-4">
+                        <span class="tag">Database</span>
+                        <span class="tag">Creative</span>
+                    </div>
+                    <h2 class="text-2xl font-display font-bold mb-2">A database for dnd Characters</h2>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        You can keep track of your characters here.
+                    </p>
+                </div>
+            </a>
             <!-- Add New Placeholder -->
             <div class="glass-card p-8 border-dashed border-white/20 hover:border-white/40 flex flex-col items-center justify-center text-center cursor-pointer opacity-70 hover:opacity-100" onclick="alert('To add a new project, simply place the HTML file in the same folder and add a new card to this Hub\'s code!')">
                 <div class="w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
