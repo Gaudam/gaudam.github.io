@@ -122,6 +122,13 @@
             box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
         }
 
+        .glass-card:hover .icon-box.red {
+            background: rgba(247, 85, 85, 0.2);
+            border-color: rgba(247, 85, 85, 0.5);
+            color: #fc8484;
+            box-shadow: 0 0 20px rgba(247, 85, 85, 0.4);
+        }
+
         .glass-card:hover .icon-box.emerald {
             background: rgba(16, 185, 129, 0.2);
             border-color: rgba(16, 185, 129, 0.5);
@@ -235,7 +242,27 @@
                 </div>
             </a>
 
-            <!-- Project 3: Chess Evolution -->
+            <!-- Project 3: Card Database -->
+            <a href="/CardCreator/" class="glass-card p-4 group">
+                <div class="flex items-center gap-3 mb-3 relative z-10">
+                    <div class="icon-box red text-slate-300 shrink-0">
+                        <i class="ph-duotone ph-address-book-tabs"></i>
+                    </div>
+                    <h2 class="text-[15px] font-display font-bold leading-tight flex-1 pr-2">Card Database</h2>
+                    <i class="ph ph-arrow-up-right text-lg text-white/20 group-hover:text-white transition-colors duration-300 self-start"></i>
+                </div>
+                <div class="relative z-10">
+                    <div class="flex gap-1.5 mb-2 flex-wrap">
+                        <span class="tag">Creative</span>
+                        <span class="tag">Database</span>
+                    </div>
+                    <p class="text-[13px] text-gray-400 leading-tight">
+                       Keep track of your cards
+                    </p>
+                </div>
+            </a>
+
+            <!-- Project 4: Chess Evolution -->
             <a href="/Chess/" class="glass-card p-4 group">
                 <div class="flex items-center gap-3 mb-3 relative z-10">
                     <div class="icon-box emerald text-slate-300 shrink-0">
@@ -255,7 +282,7 @@
                 </div>
             </a>
 
-            <!-- Project 4: DnD Database -->
+            <!-- Project 5: DnD Database -->
             <a href="/Characters/" class="glass-card p-4 group">
                 <div class="flex items-center gap-3 mb-3 relative z-10">
                     <div class="icon-box yellow text-slate-300 shrink-0">
